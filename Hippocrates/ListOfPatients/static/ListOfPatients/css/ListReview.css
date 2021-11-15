@@ -1,0 +1,15 @@
+#Table_list {
+	padding: 5px;
+}
+
+#Table_list th {
+	background: #50995e5e;
+}
+
+#Table_list tbody tr:nth-child(odd){
+	background: #b3e5bd;
+}
+
+#Table_list tbody tr:nth-child(even){
+	background: #b3e5bdb2;
+}

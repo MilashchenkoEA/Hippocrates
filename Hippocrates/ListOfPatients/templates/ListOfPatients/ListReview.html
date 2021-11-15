@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'ListOfPatients/css/ListReview.css' %}">
+</head>
+<body>
+<TABLE id="Table_list">
+    <tr class="Table_list_pat_head">
+        <th>Дата</th>
+        <th>На начало дня</th>
+        <th>Поступило</th>
+        <th>Переведено из других отделений</th>
+        <th>Переведено в другое отделение</th>
+        <th>Выписано всего</th>
+        <th>Выписано в другой стационар</th>
+        <th>Умерло</th>
+        <th>Осталось</th>
+    </tr>
+        {% for rec in ListOfPat %}
+            <tr>
+                <td>{{ rec.Date }}</td>
+                <td>{{ rec.OnStartDay }}</td>
+                <td>{{ rec.Receive }}</td>
+                <td>{{ rec.TransferFrom }}</td>
+                <td>{{ rec.TransferTo }}</td>
+                <td>{{ rec.ReleaseTotal }}</td>
+                <td>{{ rec.RelTotalTo }}</td>
+                <td>{{ rec.Die }}</td>
+                <td>{{ rec.Remain }}</td>
+                <td></td>
+
+             </tr>
+        {% endfor %}
+</TABLE>
+
+
+</body>
+</html>
