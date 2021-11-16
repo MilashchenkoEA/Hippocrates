@@ -4,7 +4,7 @@ from .models import ListPatPageOne
 
 
 class ListPatPageOneAdmin(admin.ModelAdmin):
-    list_display = ('Date', 'OnStartDay', 'Receive', 'TransferFrom', 'TransferTo', 'ReleaseTotal',
+    list_display = ('id', 'Date', 'OnStartDay', 'Receive', 'TransferFrom', 'TransferTo', 'ReleaseTotal',
                     'RelTotalTo', 'Die', 'Remain')
     # list_display_links = ('')
     search_fields = ('Date',)

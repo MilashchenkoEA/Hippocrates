@@ -9,6 +9,7 @@
 <body>
 <TABLE id="Table_list">
     <tr class="Table_list_pat_head">
+        <th>ID</th>
         <th>Дата</th>
         <th>На начало дня</th>
         <th>Поступило</th>
@@ -21,6 +22,7 @@
     </tr>
         {% for rec in ListOfPat %}
             <tr>
+                <td>{{ rec.id }}</td>
                 <td>{{ rec.Date }}</td>
                 <td>{{ rec.OnStartDay }}</td>
                 <td>{{ rec.Receive }}</td>
@@ -30,8 +32,8 @@
                 <td>{{ rec.RelTotalTo }}</td>
                 <td>{{ rec.Die }}</td>
                 <td>{{ rec.Remain }}</td>
-                <td></td>
-
+                <td><a href="{% url 'delete_pat' id_delete_pat=rec.id %}">Удалить</a></td>
+                <td>Исправить</td>
              </tr>
         {% endfor %}
 </TABLE>
