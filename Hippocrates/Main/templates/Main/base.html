@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="{% static 'Main/css/index.css' %}" type="text/css">
 </head>
 <body>
-    <div id="header">Гиппократ - медицинская информационная система</div>
+    <div id="header">
+        <table>
+            <tr>
+                <td><a href="{% url 'main' %}">Гиппократ - медицинская информационная система</a></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
     <div id="headertwo">
         <table>
             <tr>
-                <td><a href="{% url 'list_pat_part_one' %}">Лист движения пациентов</a></td>
-                <td></td>
+                <td>Лист движения: <a href="{% url 'list_pat_part_one' %}">по датам</a> |
+                    <a href="{% url 'list_pat_part_two' %}">по фамилиям</a></td>
             </tr>
         </table>
     </div>

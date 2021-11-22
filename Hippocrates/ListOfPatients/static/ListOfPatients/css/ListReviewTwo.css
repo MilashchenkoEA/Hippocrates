@@ -11,7 +11,7 @@
 }
 
 #table_add_pat td{
-    text-align: left; width: 100px;
+    text-align: left; width: 70px;
 }
 
 #add_pat{
@@ -22,34 +22,27 @@
     width: 70px;
 }
 
-#id_OnStartDay{
-    width: 70px;
-}
-
-#id_Receive{
-    width: 70px;
+#id_FNL{
+    width: 130px;
 }
 
 #id_TransferFrom{
-    width: 70px;
+    width: 130px;
 }
 
-#id_TransferTo{
-    width: 70px;
+#id_Release{
+    width: 130px;
 }
 
-#id_ReleaseTotal{
-    width: 70px;
+#id_ReleaseTo{
+    width: 130px;
 }
 
-#id_RelTotalTo{
-    width: 70px;
+#id_ReleaseToDepart{
+    width: 130px;
 }
 
 #id_Die{
-    width: 70px;
+    width: 130px;
 }
 
-#id_Remain{
-    width: 70px;
-}

@@ -4,10 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{% static 'ListOfPatients/css/ListReview.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ListOfPatients/css/ListReview.css' %}" >
 </head>
 <body>
-<TABLE id="Table_list">
+<div id="add_pat">
+    <table id="table_add_pat">
+        <tr>
+            <td colspan="2">Добавить запись в лист</td>
+        </tr>
+         <tr>
+            <td>Дата</td>
+            <td>Начало дня</td>
+            <td>Поступило</td>
+            <td>Из других отделений</td>
+            <td>В другое отделение</td>
+            <td>Выписано всего</td>
+            <td>В другой стационар</td>
+            <td>Умерло</td>
+            <td>Осталось</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>{{ ListPatPageOneForm.Date }}</td>
+                <td>{{ ListPatPageOneForm.OnStartDay }}</td>
+                <td>{{ ListPatPageOneForm.Receive }}</td>
+                <td>{{ ListPatPageOneForm.TransferFrom }}</td>
+                <td>{{ ListPatPageOneForm.TransferTo }}</td>
+                <td>{{ ListPatPageOneForm.ReleaseTotal }}</td>
+                <td>{{ ListPatPageOneForm.RelTotalTo }}</td>
+                <td>{{ ListPatPageOneForm.Die }}</td>
+                <td>{{ ListPatPageOneForm.Remain }}</td>
+                <td><input type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>Лист движения пациентов</div>
+
+<table id="Table_list">
     <tr class="Table_list_pat_head">
         <th>ID</th>
         <th>Дата</th>
@@ -33,10 +69,10 @@
                 <td>{{ rec.Die }}</td>
                 <td>{{ rec.Remain }}</td>
                 <td><a href="{% url 'delete_pat' id_delete_pat=rec.id %}">Удалить</a></td>
-                <td>Исправить</td>
+                <td><a href="{% url 'edit_pat' id_edit_pat=rec.id %}">Исправить</a></td>
              </tr>
         {% endfor %}
-</TABLE>
+</table>
 
 
 </body>

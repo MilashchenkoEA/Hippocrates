@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ListOfPatients/css/ListReviewTwo.css' %}" >
+</head>
+<body>
+<div id="add_pat">
+    <table id="table_add_pat">
+        <tr>
+            <td colspan="2">Добавить запись в лист</td>
+        </tr>
+         <tr>
+            <td>Дата</td>
+            <td>ФИО, поступил</td>
+            <td>ФИО, из других отделений</td>
+            <td>ФИО, выписан</td>
+            <td>ФИО, в другие отделения</td>
+            <td>ФИО, в другие стационары</td>
+            <td>ФИО, умер</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>{{ ListPatPageTwoForm.Date }}</td>
+                <td>{{ ListPatPageTwoForm.FNL }}</td>
+                <td>{{ ListPatPageTwoForm.TransferFrom }}</td>
+                <td>{{ ListPatPageTwoForm.Release }}</td>
+                <td>{{ ListPatPageTwoForm.ReleaseTo }}</td>
+                <td>{{ ListPatPageTwoForm.ReleaseToDepart }}</td>
+                <td>{{ ListPatPageTwoForm.Die }}</td>
+                <td><input type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>Лист движения пациентов</div>
+
+<div id="tablel">
+<table id="Table_list">
+    <tr class="Table_list_pat_head">
+            <th>ID</th>
+            <th>Дата</th>
+            <th>ФИО, поступил</th>
+            <th>ФИО, из других отделений</th>
+            <th>ФИО, выписан</th>
+            <th>ФИО, в другие отделения</th>
+            <th>ФИО, в другие стационары</th>
+            <th>ФИО, умер</th>
+    </tr>
+        {% for rec in ListOfPat %}
+            <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.Date }}</td>
+                <td>{{ rec.FNL }}</td>
+                <td>{{ rec.TransferFrom }}</td>
+                <td>{{ rec.Release }}</td>
+                <td>{{ rec.ReleaseTo }}</td>
+                <td>{{ rec.ReleaseToDepart }}</td>
+                <td>{{ rec.Die }}</td>
+                <td><a href="{% url 'delete_pat_two' id_delete_pat=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_pat_two' id_edit_pat=rec.id %}">Исправить</a></td>
+             </tr>
+        {% endfor %}
+</table>
+</div>
+
+</body>
+</html>
