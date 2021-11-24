@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'InternalStructure/css/internal_structure.css' %}" >
+</head>
+<body>
+<div id="add_pat">
+    <table id="table_add_pat">
+        <tr>
+            <td colspan="2">Добавить запись в лист</td>
+        </tr>
+         <tr>
+            <td>Отделение</td>
+            <td>Всего коек</td>
+            <td>Занято коек</td>
+            <td>Свободно коек</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>{{ internal_structure_form.NameDepart }}</td>
+                <td>{{ internal_structure_form.TotalBeds }}</td>
+                <td>{{ internal_structure_form.UsedBeds }}</td>
+                <td>{{ internal_structure_form.UnusedBeds }}</td>
+                <td><input type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>Лист движения пациентов</div>
+
+<table id="Table_list">
+    <tr class="Table_list_pat_head">
+        <th>id</th>
+        <th>Отделение</th>
+        <th>Всего коек</th>
+        <th>Занято коек</th>
+        <th>Свободно коек</th>
+    </tr>
+        {% for rec in list_of_struct %}
+            <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.NameDepart }}</td>
+                <td>{{ rec.TotalBeds }}</td>
+                <td>{{ rec.UsedBeds }}</td>
+                <td>{{ rec.UnusedBeds }}</td>
+                <td><a href="{% url 'delete_struct' id_delete_struct=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_struct' id_edit_struct=rec.id %}">Исправить</a></td>
+             </tr>
+        {% endfor %}
+</table>
+
+
+</body>
+</html>

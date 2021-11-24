@@ -1,19 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic.edit import CreateView
 from .forms import ListPatPageOneForms, ListPatPageTwoForms
 from .models import ListPatPageOne, ListPatPageTwo
 
-
-class ListPatPageOneCreateView(CreateView):
-    template_name = 'ListOfPatients/RecordInList.html'
-    form_class = ListPatPageOneForms
-    success_url = '/list_pat/'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     return context
 
 
 def list_pat_page_one(request):
@@ -43,6 +33,7 @@ def edit_pat(request, id_edit_pat):
         pat_for_edit_form = ListPatPageOneForms(instance=pat_for_edit)
         return render(request, 'Main/list_pat_part_one.html', {'ListOfPat': list_of_pat,
                                                                'ListPatPageOneForm': pat_for_edit_form})
+
 
 def delete_pat_two(request, id_delete_pat):
     pat_for_del = ListPatPageTwo.objects.get(pk=id_delete_pat)
