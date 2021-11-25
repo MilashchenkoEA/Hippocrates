@@ -1,8 +1,10 @@
 from django.db import models
+from InternalStructure.models import InternalStructure
 
 
 class ListPatPageOne(models.Model):
     Date = models.DateField(db_index=True, verbose_name='Дата')
+    Depart = models.ForeignKey(InternalStructure, on_delete=models.PROTECT, null=True)
     OnStartDay = models.IntegerField(verbose_name='Начало дня')
     Receive = models.IntegerField(verbose_name='Поступило ')
     TransferFrom = models.IntegerField(verbose_name='Переведено из других отделений')
@@ -19,6 +21,8 @@ class ListPatPageOne(models.Model):
 
 class ListPatPageTwo(models.Model):
     Date = models.DateField(db_index=True, verbose_name='Дата')
+    Depart = models.ForeignKey(InternalStructure, on_delete=models.PROTECT, null=True)
+    History = models.CharField(verbose_name='История болезни', max_length=40)
     FNL = models.CharField(verbose_name='ФИО, поступил', max_length=40)
     TransferFrom = models.CharField(verbose_name='ФИО, из других отделений', max_length=40)
     Release = models.CharField(verbose_name='ФИО, выписан', max_length=40)

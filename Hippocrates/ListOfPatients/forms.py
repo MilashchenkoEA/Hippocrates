@@ -1,9 +1,10 @@
 from django import forms
 from .models import ListPatPageOne, ListPatPageTwo
-
+from InternalStructure.models import InternalStructure
 
 class ListPatPageOneForms(forms.ModelForm):
     Date = forms.DateField()
+    Depart = forms.ModelChoiceField(queryset=InternalStructure.objects.all())
     OnStartDay = forms.IntegerField(min_value=0)
     Receive = forms.IntegerField(min_value=0)
     TransferFrom = forms.IntegerField(min_value=0)
@@ -15,12 +16,14 @@ class ListPatPageOneForms(forms.ModelForm):
 
     class Meta:
         model = ListPatPageOne
-        fields = ('Date', 'OnStartDay', 'Receive', 'TransferFrom', 'TransferTo', 'ReleaseTotal',
+        fields = ('Date', 'Depart', 'OnStartDay', 'Receive', 'TransferFrom', 'TransferTo', 'ReleaseTotal',
                   'RelTotalTo', 'Die', 'Remain')
 
 
 class ListPatPageTwoForms(forms.ModelForm):
     Date = forms.DateField()
+    Depart = forms.ModelChoiceField(queryset=InternalStructure.objects.all())
+    History = forms.CharField(max_length=40, required=False)
     FNL = forms.CharField(max_length=40, required=False)
     TransferFrom = forms.CharField(max_length=40, required=False)
     Release = forms.CharField(max_length=40, required=False)
@@ -30,5 +33,5 @@ class ListPatPageTwoForms(forms.ModelForm):
 
     class Meta:
         model = ListPatPageTwo
-        fields = ('Date', 'FNL', 'TransferFrom', 'Release', 'ReleaseTo', 'ReleaseToDepart',
+        fields = ('Date', 'Depart', 'History', 'FNL', 'TransferFrom', 'Release', 'ReleaseTo', 'ReleaseToDepart',
                   'Die')

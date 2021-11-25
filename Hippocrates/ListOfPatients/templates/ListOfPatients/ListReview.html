@@ -12,8 +12,9 @@
         <tr>
             <td colspan="2">Добавить запись в лист</td>
         </tr>
-         <tr>
+        <tr>
             <td>Дата</td>
+            <td>Отделение</td>
             <td>Начало дня</td>
             <td>Поступило</td>
             <td>Из других отделений</td>
@@ -27,6 +28,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <td>{{ ListPatPageOneForm.Date }}</td>
+                <td>{{ ListPatPageOneForm.Depart }}</td>
                 <td>{{ ListPatPageOneForm.OnStartDay }}</td>
                 <td>{{ ListPatPageOneForm.Receive }}</td>
                 <td>{{ ListPatPageOneForm.TransferFrom }}</td>
@@ -47,6 +49,7 @@
     <tr class="Table_list_pat_head">
         <th>id</th>
         <th>Дата</th>
+        <th>Отделение</th>
         <th>На начало дня</th>
         <th>Поступило</th>
         <th>Переведено из других отделений</th>
@@ -60,6 +63,7 @@
             <tr>
                 <td>{{ rec.id }}</td>
                 <td>{{ rec.Date }}</td>
+                <td>{{ rec.Depart }}</td>
                 <td>{{ rec.OnStartDay }}</td>
                 <td>{{ rec.Receive }}</td>
                 <td>{{ rec.TransferFrom }}</td>

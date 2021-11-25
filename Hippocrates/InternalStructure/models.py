@@ -11,3 +11,6 @@ class InternalStructure(models.Model):
         verbose_name_plural = 'Внутренняя структура'
         verbose_name = 'Внутренняя структура'
         ordering = ['NameDepart']
+
+    def __str__(self):
+        return self.NameDepart

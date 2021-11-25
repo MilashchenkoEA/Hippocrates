@@ -10,21 +10,25 @@
 <div id="add_pat">
     <table id="table_add_pat">
         <tr>
-            <td colspan="2">Добавить запись в лист</td>
+            <td>Добавить запись в лист</td>
         </tr>
          <tr>
-            <td>Дата</td>
-            <td>ФИО, поступил</td>
-            <td>ФИО, из других отделений</td>
-            <td>ФИО, выписан</td>
-            <td>ФИО, в другие отделения</td>
-            <td>ФИО, в другие стационары</td>
-            <td>ФИО, умер</td>
+             <td>Дата</td>
+             <td>Отделение</td>
+             <td>№ истории</td>
+             <td>ФИО, поступил</td>
+             <td>ФИО, из других отделений</td>
+             <td>ФИО, выписан</td>
+             <td>ФИО, в другие отделения</td>
+             <td>ФИО, в другие стационары</td>
+             <td>ФИО, умер</td>
         </tr>
         <tr>
             <form method="POST">
                 {% csrf_token %}
                 <td>{{ ListPatPageTwoForm.Date }}</td>
+                <td>{{ ListPatPageTwoForm.Depart }}</td>
+                <td>{{ ListPatPageTwoForm.History }}</td>
                 <td>{{ ListPatPageTwoForm.FNL }}</td>
                 <td>{{ ListPatPageTwoForm.TransferFrom }}</td>
                 <td>{{ ListPatPageTwoForm.Release }}</td>
@@ -42,19 +46,23 @@
 <div id="tablel">
 <table id="Table_list">
     <tr class="Table_list_pat_head">
-            <th>id</th>
-            <th>Дата</th>
-            <th>ФИО, поступил</th>
-            <th>ФИО, из других отделений</th>
-            <th>ФИО, выписан</th>
-            <th>ФИО, в другие отделения</th>
-            <th>ФИО, в другие стационары</th>
-            <th>ФИО, умер</th>
+        <th>id</th>
+        <th>Дата</th>
+        <th>Отделение</th>
+        <th>№ истории</th>
+        <th>ФИО, поступил</th>
+        <th>ФИО, из других отделений</th>
+        <th>ФИО, выписан</th>
+        <th>ФИО, в другие отделения</th>
+        <th>ФИО, в другие стационары</th>
+        <th>ФИО, умер</th>
     </tr>
         {% for rec in ListOfPat %}
             <tr>
                 <td>{{ rec.id }}</td>
                 <td>{{ rec.Date }}</td>
+                <td>{{ rec.Depart }}</td>
+                <td>{{ rec.History }}</td>
                 <td>{{ rec.FNL }}</td>
                 <td>{{ rec.TransferFrom }}</td>
                 <td>{{ rec.Release }}</td>
