@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'InternalStructure/css/internal_structure.css' %}" >
+</head>
+<body>
+<div id="add_pat">
+    <table id="table_add_pat">
+        <tr>
+            <td colspan="2">Добавить запись в Результаты лечения</td>
+        </tr>
+         <tr>
+            <td>Результат лечения</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>{{ treatment_result_form.treatment_result }}</td>
+
+                <td><input type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>Результаты лечения</div>
+
+<table id="Table_list">
+    <tr class="Table_list_pat_head">
+        <th>id</th>
+        <th>Результат лечения</th>
+    </tr>
+        {% for rec in list_of_treatment_result %}
+            <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.treatment_result }}</td>
+                <td><a href="{% url 'delete_treatment_result' id_delete_treatment_result=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_treatment_result' id_edit_treatment_result=rec.id %}">Исправить</a></td>
+             </tr>
+        {% endfor %}
+</table>
+
+</body>
+</html>

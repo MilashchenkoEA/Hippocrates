@@ -1,5 +1,5 @@
 from django.db import models
-from InternalStructure.models import InternalStructure
+from InternalStructure.models import InternalStructure, TreatmentResult, MedicalInstitution
 
 
 class ListPatPageOne(models.Model):
@@ -19,6 +19,7 @@ class ListPatPageOne(models.Model):
         verbose_name = 'Лист движения пациентов'
         ordering = ['-Date']
 
+
 class ListPatPageTwo(models.Model):
     Date = models.DateField(db_index=True, verbose_name='Дата')
     Depart = models.ForeignKey(InternalStructure, on_delete=models.PROTECT, null=True)
@@ -31,6 +32,31 @@ class ListPatPageTwo(models.Model):
     Die = models.CharField(verbose_name='ФИО, умер', max_length=40)
 
     class Meta():
-            verbose_name_plural = 'Лист движения пациентов по фамилиям'
-            verbose_name = 'Лист движения пациентов по фамилиям'
-            ordering = ['-Date']
+        verbose_name_plural = 'Лист движения пациентов по фамилиям'
+        verbose_name = 'Лист движения пациентов по фамилиям'
+        ordering = ['-Date']
+
+
+# Модель. "Движение больных"->"Список пациентов"
+class ListPatView(models.Model):
+    depart = models.ForeignKey(InternalStructure, on_delete=models.SET_NULL, null=True,
+                               verbose_name='Отделение', related_name='depart')
+    history = models.CharField(verbose_name='История болезни', max_length=40)
+    full_name = models.CharField(verbose_name='ФИО', max_length=40)
+    arrived_from_depart = models.ForeignKey(InternalStructure, on_delete=models.SET_NULL, null=True,
+                                            verbose_name='Поступил из отделения', related_name='from_depart')
+    arrived_from_hosp = models.ForeignKey(MedicalInstitution, on_delete=models.SET_NULL, null=True,
+                                          verbose_name='Поступил из другого МУ', related_name='from_hosp')
+    date_arrived = models.DateField(verbose_name='Дата поступления', db_index=True)
+    date_release = models.DateField(verbose_name='Дата выписки', db_index=True)
+    treatment_result = models.ForeignKey(TreatmentResult, on_delete=models.SET_NULL, null=True,
+                                         verbose_name='Результат лечения')
+    transfer_to_depart = models.ForeignKey(InternalStructure, on_delete=models.SET_NULL, null=True,
+                                           verbose_name='Переведен в другое отделение', related_name='to_depart')
+    transfer_to_hospital = models.ForeignKey(MedicalInstitution, on_delete=models.SET_NULL, null=True,
+                                             verbose_name='Поступил из другого МУ', related_name='to_hosp')
+
+    class Meta():
+        verbose_name_plural = 'Список пациентов'
+        verbose_name = 'Список пациентов'
+        ordering = ['-date_arrived']

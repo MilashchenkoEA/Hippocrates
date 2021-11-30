@@ -1,5 +1,5 @@
 from django import forms
-from .models import InternalStructure
+from .models import InternalStructure, TreatmentResult
 
 
 class InternalStructureForms(forms.ModelForm):
@@ -11,3 +11,11 @@ class InternalStructureForms(forms.ModelForm):
     class Meta:
         model = InternalStructure
         fields = ('NameDepart', 'TotalBeds', 'UsedBeds', 'UnusedBeds')
+
+
+class TreatmentResultForms(forms.ModelForm):
+    treatment_result = forms.CharField(max_length=40)
+
+    class Meta:
+        model = TreatmentResult
+        fields = ('treatment_result',)

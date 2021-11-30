@@ -2,6 +2,7 @@ from django import forms
 from .models import ListPatPageOne, ListPatPageTwo
 from InternalStructure.models import InternalStructure
 
+
 class ListPatPageOneForms(forms.ModelForm):
     Date = forms.DateField()
     Depart = forms.ModelChoiceField(queryset=InternalStructure.objects.all())
@@ -35,3 +36,9 @@ class ListPatPageTwoForms(forms.ModelForm):
         model = ListPatPageTwo
         fields = ('Date', 'Depart', 'History', 'FNL', 'TransferFrom', 'Release', 'ReleaseTo', 'ReleaseToDepart',
                   'Die')
+
+
+class FilterListPageOneForms(forms.Form):
+    start_date = forms.DateField()
+    end_date = forms.DateField()
+    depart = forms.ModelChoiceField(queryset=InternalStructure.objects.all(), required=False)

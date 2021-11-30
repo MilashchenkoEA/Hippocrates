@@ -15,28 +15,53 @@
             </tr>
         </table>
     </div>
-    <div id="headertwo">
-        <table>
-            <tr>
-                <td>Лист движения: <a href="{% url 'list_pat_part_one' %}">даты</a>,
-                    <a href="{% url 'list_pat_part_two' %}">фамилии</a> | </td>
-                <td><a href="{% url 'internal_structure' %}">Внутренняя структура</a></td>
-            </tr>
-        </table>
-    </div>
+    <div id="headertwo"></div>
+
+<!--    <div id="headertwo">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td>Лист движения: <a href="{% url 'list_pat_part_one' %}">даты</a>,-->
+<!--                    <a href="{% url 'list_pat_part_two' %}">фамилии</a> | </td>-->
+<!--                <td><a href="{% url 'internal_structure' %}">Внутренняя структура</a></td>-->
+<!--                <td><a href="{% url 'treatment_result' %}">Результаты лечения</a></td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </div>-->
+
     <div id="main">
         <div id="left_col_body">
-            <table>
-                <tr>
-                    <td>Инструменты</td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
+            <table id="left_menu">
+                <tr><td>Движение пациентов</td></tr>
+                <tr><td class="submenu"><a href="{% url 'list_pat_part_one' %}">Движение по датам</a></td></tr>
+                <tr><td class="submenu"><a href="{% url 'list_pat_part_two' %}">Движение по фамилиям</a></td></tr>
+                <tr><td class="submenu"><a href=#>Список больных</a></td></tr>
+                <tr><td>Учет выбывших</td></tr>
+                <tr><td class="submenu">Субменю</td></tr>
+                <tr><td class="submenu">Субменю</td></tr>
+                <tr><td>Внутренняя структура</td></tr>
+                <tr><td class="submenu"><a href="{% url 'internal_structure' %}">Отделения</a></td></tr>
+                <tr><td class="submenu"><a href=#>Персонал</a></td></tr>
+                <tr><td>Параметры</td></tr>
+                <tr><td class="submenu"><a href="{% url 'treatment_result' %}">Результаты лечения</a></td></tr>
+                <tr><td class="submenu"><a href=#>Куда выписан</a></td></tr>
+                <tr><td class="submenu"><a href=#>Исход лечения</a></td></tr>
+                <tr><td class="submenu"><a href=#>Кто направил</a></td></tr>
+                <tr><td class="submenu"><a href=#>Персонал</a></td></tr>
+                <tr><td class="submenu"><a href=#>Сроки доставки</a></td></tr>
+                <tr><td class="submenu"><a href=#>МКБ</a></td></tr>
+                <tr><td class="submenu"><a href=#>Вскрытие</a></td></tr>
+                <tr><td class="submenu"><a href=#>Расхождения вскр.</a></td></tr>
+                <tr><td class="submenu"><a href=#>Финансирование</a></td></tr>
+                <tr><td class="submenu"><a href=#>Группы операций</a></td></tr>
+                <tr><td class="submenu"><a href=#>Наименование операции</a></td></tr>
+                <tr><td class="submenu"><a href=#>Обезболивание</a></td></tr>
+                <tr><td class="submenu"><a href=#>Социальное положение</a></td></tr>
+                <tr><td class="submenu"><a href=#>Беременность</a></td></tr>
+                <tr><td class="submenu"><a href=#>Прививка</a></td></tr>
+                <tr><td class="submenu"><a href=#>Медицинские учереждения</a></td></tr>
             </table>
         </div>
         <div id="main_col_body">{% block content %} {% endblock %}</div>
-
-
+    </div>
 </body>
 </html>

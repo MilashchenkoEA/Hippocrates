@@ -25,7 +25,7 @@
             <td>Осталось</td>
         </tr>
         <tr>
-            <form method="POST">
+            <form action="/list_pat_part_one/" method="POST">
                 {% csrf_token %}
                 <td>{{ ListPatPageOneForm.Date }}</td>
                 <td>{{ ListPatPageOneForm.Depart }}</td>
@@ -44,6 +44,20 @@
 </div>
 
 <div>Лист движения пациентов</div>
+
+<div>
+    <table>
+        <tr><td>Отобразить</td></tr>
+        <tr>
+            <form action="/list_pat_page_one_filter/" method="POST">
+                {% csrf_token %}
+                <td>За период с {{ FilterListPageOneForm.start_date }} по {{ FilterListPageOneForm.end_date }},</td>
+                <td>отделение {{ FilterListPageOneForm.depart }}</td>
+                <td><input type="submit" value="Отфильтровать" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
 
 <table id="Table_list">
     <tr class="Table_list_pat_head">
