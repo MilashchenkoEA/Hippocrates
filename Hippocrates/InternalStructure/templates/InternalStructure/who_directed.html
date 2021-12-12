@@ -10,15 +10,15 @@
 <div id="add_pat">
     <table id="table_add_pat">
         <tr>
-            <td colspan="2">Добавить запись в Результаты лечения</td>
+            <td colspan="2">Добавить запись в Кто направил</td>
         </tr>
          <tr>
-            <td>Результат лечения</td>
+            <td>Кто направил</td>
         </tr>
         <tr>
             <form method="POST">
                 {% csrf_token %}
-                <td>{{ rec_form.treatment_result }}</td>
+                <td>{{ rec_form.who_directed }}</td>
 
                 <td><input type="submit" value="Добавить" ></td>
             </form>
@@ -26,19 +26,19 @@
     </table>
 </div>
 
-<div>Результаты лечения</div>
+<div>Кто направил</div>
 
 <table id="Table_list">
     <tr class="Table_list_pat_head">
         <th>id</th>
-        <th>Результат лечения</th>
+        <th>Кто направил</th>
     </tr>
         {% for rec in list_of_records %}
             <tr>
                 <td>{{ rec.id }}</td>
-                <td>{{ rec.treatment_result }}</td>
-                <td><a href="{% url 'delete_treatment_result' id_record=rec.id %}">Удалить</a></td>
-                <td><a href="{% url 'edit_treatment_result' id_record=rec.id %}">Исправить</a></td>
+                <td>{{ rec.who_directed }}</td>
+                <td><a href="{% url 'delete_who_directed' id_record=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_who_directed' id_record=rec.id %}">Исправить</a></td>
              </tr>
         {% endfor %}
 </table>

@@ -21,10 +21,10 @@
         <tr>
             <form method="POST">
                 {% csrf_token %}
-                <td>{{ internal_structure_form.NameDepart }}</td>
-                <td>{{ internal_structure_form.TotalBeds }}</td>
-                <td>{{ internal_structure_form.UsedBeds }}</td>
-                <td>{{ internal_structure_form.UnusedBeds }}</td>
+                <td>{{ rec_form.NameDepart }}</td>
+                <td>{{ rec_form.TotalBeds }}</td>
+                <td>{{ rec_form.UsedBeds }}</td>
+                <td>{{ rec_form.UnusedBeds }}</td>
                 <td><input type="submit" value="Добавить" ></td>
             </form>
         </tr>
@@ -41,15 +41,15 @@
         <th>Занято коек</th>
         <th>Свободно коек</th>
     </tr>
-        {% for rec in list_of_struct %}
+        {% for rec in list_of_records %}
             <tr>
                 <td>{{ rec.id }}</td>
                 <td>{{ rec.NameDepart }}</td>
                 <td>{{ rec.TotalBeds }}</td>
                 <td>{{ rec.UsedBeds }}</td>
                 <td>{{ rec.UnusedBeds }}</td>
-                <td><a href="{% url 'delete_struct' id_delete_struct=rec.id %}">Удалить</a></td>
-                <td><a href="{% url 'edit_struct' id_edit_struct=rec.id %}">Исправить</a></td>
+                <td><a href="{% url 'delete_internal_structure' id_record=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_internal_structure' id_record=rec.id %}">Исправить</a></td>
              </tr>
         {% endfor %}
 </table>

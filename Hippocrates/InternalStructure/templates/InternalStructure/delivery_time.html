@@ -10,15 +10,15 @@
 <div id="add_pat">
     <table id="table_add_pat">
         <tr>
-            <td colspan="2">Добавить запись в Результаты лечения</td>
+            <td colspan="2">Добавить запись в Время доставки</td>
         </tr>
          <tr>
-            <td>Результат лечения</td>
+            <td>Сроки доставки</td>
         </tr>
         <tr>
             <form method="POST">
                 {% csrf_token %}
-                <td>{{ rec_form.treatment_result }}</td>
+                <td>{{ rec_form.delivery_time }}</td>
 
                 <td><input type="submit" value="Добавить" ></td>
             </form>
@@ -26,19 +26,19 @@
     </table>
 </div>
 
-<div>Результаты лечения</div>
+<div>Сроки доставки</div>
 
 <table id="Table_list">
     <tr class="Table_list_pat_head">
         <th>id</th>
-        <th>Результат лечения</th>
+        <th>Сроки доставки</th>
     </tr>
         {% for rec in list_of_records %}
             <tr>
                 <td>{{ rec.id }}</td>
-                <td>{{ rec.treatment_result }}</td>
-                <td><a href="{% url 'delete_treatment_result' id_record=rec.id %}">Удалить</a></td>
-                <td><a href="{% url 'edit_treatment_result' id_record=rec.id %}">Исправить</a></td>
+                <td>{{ rec.delivery_time }}</td>
+                <td><a href="{% url 'delete_delivery_time' id_record=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_delivery_time' id_record=rec.id %}">Исправить</a></td>
              </tr>
         {% endfor %}
 </table>

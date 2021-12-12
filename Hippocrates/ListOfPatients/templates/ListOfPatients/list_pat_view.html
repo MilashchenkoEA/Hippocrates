@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ListOfPatients/css/list_pat_view.css' %}" >
+</head>
+<body>
+<div id="add_pat">
+    <table class="table_add_pat">
+        <tr>
+            <td colspan="2">Добавить запись в Список пациентов</td>
+        </tr>
+         <tr>
+             <td>Отделение</td>
+             <td>История болезни</td>
+             <td>ФИО</td>
+             <td>Из отделения</td>
+             <td>Из другого МУ</td>
+             <td>Дата поступления</td>
+             <td>Дата выписки</td>
+             <td>Результат лечения</td>
+             <td>В другое отделение</td>
+             <td>В другое МУ</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>{{ rec_form.depart }}</td>
+                <td>{{ rec_form.history }}</td>
+                <td>{{ rec_form.full_name }}</td>
+                <td>{{ rec_form.arrived_from_depart }}</td>
+                <td>{{ rec_form.arrived_from_hosp }}</td>
+                <td>{{ rec_form.date_arrived }}</td>
+                <td>{{ rec_form.date_released }}</td>
+                <td>{{ rec_form.treatment_result }}</td>
+                <td>{{ rec_form.transfer_to_depart }}</td>
+                <td>{{ rec_form.transfer_to_hospital }}</td>
+                <td><input type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>
+            <form action="/filter_record_list_pat_view/" method="POST">
+                {% csrf_token %}
+                 <table id="table_filter">
+                    <tr><td>Фильтр записей</td></tr>
+                     <tr>
+                        <td>Отделение {{ filter_form.depart }}</td>
+                        <td>ФИО {{ filter_form.full_name }}</td>
+                        <td>Из отделения {{ filter_form.arrived_from_depart }}</td>
+                        <td>Из другого МУ {{ filter_form.arrived_from_hosp }}</td>
+                        <td>Результаты лечения {{ filter_form.treatment_result }}</td>
+                    </tr>
+                    <tr>
+                        <td>Дата поступления c {{ filter_form.start_date_arrived }} по {{ filter_form.end_date_arrived }}</td>
+                        <td>Дата выписки c {{ filter_form.start_date_released }} по {{ filter_form.end_date_released }}</td>
+                        <td><input type="submit" value="Отфильтровать" ></td>
+                    </tr>
+                 </table>
+            </form>
+</div>
+
+<div>Список пациентов</div>
+
+<table id="Table_list">
+    <tr class="Table_list_pat_head">
+        <th>id</th>
+        <th>Отделение</th>
+        <th>История болезни</th>
+        <th>ФИО</th>
+        <th>Из отделения</th>
+        <th>Из другого МУ</th>
+        <th>Дата поступления</th>
+        <th>Дата выписки</th>
+        <th>Результат лечения</th>
+        <th>В другое отделение</th>
+        <th>В другое МУ</th>
+    </tr>
+        {% for rec in list_of_records %}
+            <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.depart }}</td>
+                <td>{{ rec.history }}</td>
+                <td>{{ rec.full_name }}</td>
+                <td>{{ rec.arrived_from_depart }}</td>
+                <td>{{ rec.arrived_from_hosp }}</td>
+                <td>{{ rec.date_arrived }}</td>
+                <td>{{ rec.date_release }}</td>
+                <td>{{ rec.treatment_result }}</td>
+                <td>{{ rec.transfer_to_depart }}</td>
+                <td>{{ rec.transfer_to_hospital }}</td>
+                <td><a href="{% url 'delete_list_pat_view' id_record=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_list_pat_view' id_record=rec.id %}">Исправить</a></td>
+             </tr>
+        {% endfor %}
+</table>
+
+</body>
+</html>

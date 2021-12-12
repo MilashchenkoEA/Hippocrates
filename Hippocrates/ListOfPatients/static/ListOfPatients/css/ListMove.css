@@ -1,0 +1,91 @@
+#Table_list th {
+	background: #50995e5e;
+}
+
+#Table_list tbody tr:nth-child(odd){
+	background: #b3e5bd;
+}
+
+#Table_list tbody tr:nth-child(even){
+	background: #b3e5bdb2;
+}
+
+#table_add_pat td{
+    text-align: left; width: 150px;
+}
+
+#add_pat{
+    margin-bottom: 10px;
+}
+
+#id_date{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_depart{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_on_start_day{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_receive{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_transfer_from{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_transfer_to{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_release_total{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_rel_total_to{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_die{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_remain{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_start_date{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}
+
+#id_end_date{
+    border:0;
+    border-bottom: 2px solid #000;
+    width: 100px;
+}

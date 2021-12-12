@@ -48,7 +48,7 @@ class TreatmentResult(models.Model):
 class WhereDischarged(models.Model):
     where_discharged = models.CharField(db_index=True, verbose_name='Куда выписан', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Куда выписан'
         verbose_name = 'Куда выписан'
         ordering = ['where_discharged']
@@ -57,24 +57,11 @@ class WhereDischarged(models.Model):
         return self.where_discharged
 
 
-# Модель. "Параметры"->"Исход лечения"
-class TreatmentOutcome(models.Model):
-    treatment_outcome = models.CharField(db_index=True, verbose_name='Исход лечения', max_length=40)
-
-    class Meta():
-        verbose_name_plural = 'Исход лечения'
-        verbose_name = 'Исход лечения'
-        ordering = ['treatment_outcome']
-
-    def __str__(self):
-        return self.treatment_outcome
-
-
 # Модель. "Параметры"->"Кто направил"
 class WhoDirected(models.Model):
     who_directed = models.CharField(db_index=True, verbose_name='Кто направил', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Кто направил'
         verbose_name = 'Кто направил'
         ordering = ['who_directed']
@@ -87,7 +74,7 @@ class WhoDirected(models.Model):
 class DeliveryTime(models.Model):
     delivery_time = models.CharField(db_index=True, verbose_name='Сроки доставки', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Сроки доставки'
         verbose_name = 'Сроки доставки'
         ordering = ['delivery_time']
@@ -103,7 +90,7 @@ class DeliveryTime(models.Model):
 class Autopsy(models.Model):
     autopsy = models.CharField(db_index=True, verbose_name='Вскрытие', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Вскрытие'
         verbose_name = 'Вскрытие'
         ordering = ['autopsy']
@@ -116,7 +103,7 @@ class Autopsy(models.Model):
 class DifferenceAutopsy(models.Model):
     difference_autopsy = models.CharField(db_index=True, verbose_name='Расхождение при вскрытии', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Расхождение при вскрытии'
         verbose_name = 'Расхождение при вскрытии'
         ordering = ['difference_autopsy']
@@ -170,7 +157,7 @@ class NameOperation(models.Model):
 class Anesthesia(models.Model):
     anesthesia = models.CharField(db_index=True, verbose_name='Анестезия', max_length=40)
 
-    class Meta():
+    class Meta:
         verbose_name_plural = 'Анестезия'
         verbose_name = 'Анестезия'
         ordering = ['anesthesia']

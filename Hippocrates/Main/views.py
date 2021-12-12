@@ -1,28 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from ListOfPatients.models import ListPatPageOne, ListPatPageTwo
-from ListOfPatients.forms import ListPatPageOneForms, ListPatPageTwoForms, FilterListPageOneForms
-from InternalStructure.models import InternalStructure, TreatmentResult
-from InternalStructure.forms import InternalStructureForms, TreatmentResultForms
+from ListOfPatients.models import ListPatPageOne, ListPatPageTwo, ListPatView
+from ListOfPatients.forms import ListPatPageOneForms, ListPatPageTwoForms, ListPatViewForms
+from InternalStructure.models import InternalStructure, TreatmentResult, MedicalInstitution
+from InternalStructure.forms import InternalStructureForms, TreatmentResultForms, MedicalInstitutionForms, WhoDirectedForms
 
 
 def main(request):
     return render(request, 'Main/index.html')
-
-
-# Отображает лист движения пациентов часть один
-def list_pat_part_one(request):
-    list_of_pat = ListPatPageOne.objects.all()
-    if request.method == 'POST':
-        add_pat_form = ListPatPageOneForms(request.POST)
-        if add_pat_form.is_valid():
-            add_pat_form.save()
-            return HttpResponseRedirect(reverse('list_pat_part_one'), {'ListOfPat': list_of_pat})
-    else:
-        return render(request, 'Main/list_pat_part_one.html', {'ListOfPat': list_of_pat,
-                                                               'ListPatPageOneForm': ListPatPageOneForms,
-                                                               'FilterListPageOneForm': FilterListPageOneForms})
 
 
 # Отображает лист движения пациентов часть два
@@ -38,27 +24,17 @@ def list_pat_part_two(request):
                                                                'ListPatPageTwoForm': ListPatPageTwoForms})
 
 
-# Отображает справочник Внутренняя структура
-def internal_structure(request):
-    list_of_struct = InternalStructure.objects.all()
+# Отображает страницу с данными по определенной модели
+def data_page(request, model, rec_form, template, filter_form=None):
+    list_of_records = model.objects.all()
     if request.method == 'POST':
-        internal_structure_form = InternalStructureForms(request.POST)
-        if internal_structure_form.is_valid():
-            internal_structure_form.save()
-            return HttpResponseRedirect(reverse('internal_structure'), {'list_of_struct': list_of_struct})
-    else:
-        return render(request, 'Main/internal_structure.html', {'list_of_struct': list_of_struct,
-                                                                'internal_structure_form': InternalStructureForms})
-
-
-# Отображает справочник Результаты лечения
-def treatment_result(request):
-    list_of_treatment_result = TreatmentResult.objects.all()
-    if request.method == 'POST':
-        add_list_form = TreatmentResultForms(request.POST)
+        add_list_form = rec_form(request.POST)
         if add_list_form.is_valid():
             add_list_form.save()
-            return HttpResponseRedirect(reverse('treatment_result'), {'list_of_treatment_result': treatment_result})
+            rev = template
+            return HttpResponseRedirect(reverse(rev))
     else:
-        return render(request, 'Main/treatment_result.html', {'list_of_treatment_result': list_of_treatment_result,
-                                                              'treatment_result_form': TreatmentResultForms})
+        return render(request, 'Main/' + template + '.html', {'list_of_records': list_of_records,
+                                                              'rec_form': rec_form,
+                                                              'filter_form': filter_form})
+

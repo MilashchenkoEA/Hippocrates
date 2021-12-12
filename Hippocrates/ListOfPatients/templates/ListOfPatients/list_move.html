@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ListOfPatients/css/ListMove.css' %}" >
+</head>
+<body>
+<div id="add_pat">
+    <table id="table_add_pat">
+        <tr>
+            <td colspan="4">Добавить запись в Лист движения по датам</td>
+        </tr>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                <td>Дата: {{ rec_form.date }}</td>
+                <td>Отделение: {{ rec_form.depart }}</td>
+                <td>Начало дня: {{ rec_form.on_start_day }}</td>
+                <td>Поступило: {{ rec_form.receive }}</td>
+                <td>Из отделения: {{ rec_form.transfer_from }}</td>
+                <td>В другое отделение: {{ rec_form.transfer_to }}</td>
+                <td>Выписано всего: {{ rec_form.release_total }}</td>
+                <td>В другой стационар: {{ rec_form.rel_total_to }}</td>
+                <td>Умерло: {{ rec_form.die }}</td>
+                <td>Осталось: {{ rec_form.remain }}</td>
+                <td><input class="button" type="submit" value="Добавить" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table>
+        <tr>Фильтр записей</tr>
+        <tr>
+            <form action="/filter_record_list_move/" method="POST">
+                {% csrf_token %}
+                <td>За период с {{ filter_form.start_date }} по {{ filter_form.end_date }},</td>
+                <td>отделение {{ filter_form.depart }}</td>
+                <td><input type="submit" value="Отфильтровать" ></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<table id="Table_list">
+    <tr>Лист движения по датам</tr>
+    <tr class="Table_list_pat_head">
+        <th>id</th>
+        <th>Дата</th>
+        <th>Отделение</th>
+        <th>На начало дня</th>
+        <th>Поступило</th>
+        <th>Переведено из других отделений</th>
+        <th>Переведено в другое отделение</th>
+        <th>Выписано всего</th>
+        <th>Выписано в другой стационар</th>
+        <th>Умерло</th>
+        <th>Осталось</th>
+    </tr>
+        {% for rec in list_of_records %}
+            <tr>
+                <td>{{ rec.id }}</td>
+                <td>{{ rec.date }}</td>
+                <td>{{ rec.depart }}</td>
+                <td>{{ rec.on_start_day }}</td>
+                <td>{{ rec.receive }}</td>
+                <td>{{ rec.transfer_from }}</td>
+                <td>{{ rec.transfer_to }}</td>
+                <td>{{ rec.release_total }}</td>
+                <td>{{ rec.rel_total_to }}</td>
+                <td>{{ rec.die }}</td>
+                <td>{{ rec.remain }}</td>
+                <td><a href="{% url 'delete_list_move' id_record=rec.id %}">Удалить</a></td>
+                <td><a href="{% url 'edit_list_move' id_record=rec.id %}">Исправить</a></td>
+             </tr>
+        {% endfor %}
+</table>
+
+
+</body>
+</html>

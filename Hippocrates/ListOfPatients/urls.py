@@ -1,13 +1,31 @@
 from django.contrib import admin
 from django.urls import path
-
-from .views import delete_pat, edit_pat, delete_pat_two, edit_pat_two, list_pat_page_one_filter
-
+from .views import delete_record, edit_record, filter_record
+from .models import ListPatView, ListPatPageOne
+from .forms import ListPatViewForms, ListPatPageOneForms
 
 urlpatterns = [
-    path('delete_pat/<int:id_delete_pat>/', delete_pat, name='delete_pat'),
-    path('edit_pat/<int:id_edit_pat>/', edit_pat, name='edit_pat'),
-    path('delete_pat_two/<int:id_delete_pat>/', delete_pat_two, name='delete_pat_two'),
-    path('edit_pat_two/<int:id_edit_pat>/', edit_pat_two, name='edit_pat_two'),
-    path('list_pat_page_one_filter/', list_pat_page_one_filter, name='list_pat_page_one_filter'),
+        # "Лист движения"
+    path('filter_record_list_move/', filter_record, {'model': ListPatPageOne,
+                                                     'template': 'list_move',
+                                                     'rec_form': ListPatPageOneForms}, name='filter_record_list_move'),
+    path('delete_list_move/<int:id_record>/', delete_record, {'model': ListPatPageOne,
+                                                              'rev': 'list_move'},
+         name='delete_list_move'),
+    path('edit_list_move/<int:id_record>/', edit_record, {'model': ListPatPageOne,
+                                                          'edit_form': ListPatPageOneForms,
+                                                          'template': 'list_move'},
+         name='edit_list_move'),
+    # "Список пациентов"
+    path('filter_record_list_pat_view/', filter_record, {'model': ListPatView,
+                                                         'template': 'list_pat_view',
+                                                         'rec_form': ListPatViewForms},
+         name='filter_record_list_pat_view'),
+    path('delete_list_pat_view/<int:id_record>/', delete_record, {'model': ListPatView,
+                                                                  'rev': 'list_pat_view'},
+         name='delete_list_pat_view'),
+    path('edit_list_pat_view/<int:id_record>/', edit_record, {'model': ListPatView,
+                                                              'edit_form': ListPatViewForms,
+                                                              'template': 'list_pat_view'},
+         name='edit_list_pat_view'),
 ]

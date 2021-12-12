@@ -1,0 +1,104 @@
+#Table_list th {
+	background: #50995e5e;
+}
+
+#Table_list tbody tr:nth-child(odd){
+	background: #b3e5bd;
+}
+
+#Table_list tbody tr:nth-child(even){
+	background: #b3e5bdb2;
+}
+
+#table_add_pat td{
+    text-align: left; width: 100px;
+}
+
+#table_filter td{
+    text-align: left; width: 150px;
+}
+
+#add_pat{
+    margin-bottom: 10px;
+}
+
+#id_Depart{
+    width: 70px;
+}
+
+#id_history{
+    width: 70px;
+}
+
+#id_full_name{
+    width: 70px;
+}
+
+#id_arrived_from_depart{
+    width: 70px;
+}
+
+#id_arrived_from_hosp{
+    width: 70px;
+}
+
+#id_date_arrived{
+    width: 70px;
+}
+
+#id_date_release{
+    width: 70px;
+}
+
+#id_treatment_result{
+    width: 70px;
+}
+
+#id_transfer_to_depart{
+    width: 70px;
+}
+
+#id_start_day{
+    width: 70px;
+}
+
+#id_end_day{
+    width: 70px;
+}
+
+#id_full_name{
+    width: 70px;
+}
+
+
+
+#id_start_date_arrived{
+    width: 70px;
+}
+
+#id_end_date_arrived{
+    width: 70px;
+}
+
+#id_start_date_release{
+    width: 70px;
+}
+
+#id_end_date_release{
+    width: 70px;
+}
+
+#id_transfer_to_depart{
+    width: 70px;
+}
+
+#id_transfer_to_depart{
+    width: 70px;
+}
+
+
+
+
+            treatment_result
+            transfer_to_depart
+            transfer_to_hospital
